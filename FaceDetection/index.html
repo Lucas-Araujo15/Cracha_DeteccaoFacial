@@ -1,51 +1,44 @@
 <!doctype html>
 <html>
+
 <head>
-	<title>Reconhecimento de Crachás</title>
-	<meta charset='utf-8'>
-	<link rel="stylesheet" href="main.css" type="text/css" media="all">
+  <title>Reconhecimento de Crachás</title>
+  <meta charset='utf-8'>
+  <link rel="stylesheet" href="main.css" type="text/css" media="all">
 
-	<script src="capture.js">
-	</script>
+  <script src="capture.js">
+  </script>
 </head>
+
 <body>
-<div class="contentarea">
-	<h1>
-		Reconhecimento de Crachás
-	</h1>
-	<p>
-		A plataforma irá analisar sua identidade
-	</p>
-  <div class="camera">
-    <video id="video">Video stream not available.</video>
-    <button id="startbutton">Tirar foto</button> 
-  </div>
-  <canvas id="canvas">
-  </canvas>
-  <div class="output">
-    <img id="photo" alt="The screen capture will appear in this box."> 
-  </div>
-	<p>
-		Após a validação o usuário poderá entrar
-	</p>
-</div>
+  <script src="capture.js">
+  </script>
+  <div class="tela">
+    <div class="campoFoto">
+      <div class="camera">
+        <video id="video">Video stream not available.</video>
+      </div>
+      <button id="startbutton">Tirar foto</button>
+    </div>
+    <div class="campoImagens">
+      <canvas id="canvas1">
+        <div class="output">
+          <img id="photo1" alt="The screen capture will appear in this box." />
+        </div>
+      </canvas>
 
-<!-- Segunda câmera -->
+      <canvas id="canvas2">
+        <div class="output">
+          <img id="photo2" alt="The screen capture will appear in this box." src="" />
+        </div>
+      </canvas>
 
-<div class="contentarea2">
-
-  <div class="camera2">
-    <video id="video">Video stream not available.</video>
-    <button id="startbutton">Tirar foto</button> 
+    </div>
+    <button class="btnVerificar">
+      Verificar
+    </button>
   </div>
-  <canvas id="canvas">
-  </canvas>
-  <div class="output2">
-    <img id="photo" alt="The screen capture will appear in this box."> 
-  </div>
-
-</div>
 
 </body>
-</html>
 
+</html>
