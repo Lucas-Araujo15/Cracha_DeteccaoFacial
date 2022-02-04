@@ -87,7 +87,7 @@
   // drawing that to the screen, we can change its size and/or apply
   // other changes before drawing it.
 
- 
+
 
   function takepicture() {
 
@@ -102,21 +102,47 @@
       var data = canvas1.toDataURL('image/png');
 
       photo1.setAttribute('src', data);
-      
-     console.log(data)
 
-      fetch("https://brazilsouth.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceAttributes=gender,facialhair,glasses,hair,accessories,emotion,smile&recognitionModel=recognition_04&detectionModel=detection_01&faceIdTimeToLive=86400",{method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key' : '449e3437fdf34999bc9d6c2ecccc8c2b'
-      },
-      body: JSON.stringify({url : data})})
+      console.log(data)
 
-      .then((resposta) =>  {
-        if (resposta.status === 200) {
-          console.log(resposta)
-        }
+
+      var formData = new FormData();
+
+      const data64 = data.replace('data:image/png;base64,', '')
+      formData.append('image', data64)
+      formData.append('type', 'base64')
+
+      fetch("https://api.imgur.com/3/upload", {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Client-ID {f7dde74fe8db4d0}',
+          Authorization: 'Bearer ' + 'ca7ee65212e7489a81b4d1b3313b10b01cd7bfd3',
+        },
+        body: formData
       })
+
+        .then((resposta) => {
+          if (resposta.status === 200) {
+            console.log(resposta)
+          }
+        })
+
+
+
+      fetch("https://brazilsouth.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceAttributes=gender,facialhair,glasses,hair,accessories,emotion,smile&recognitionModel=recognition_04&detectionModel=detection_01&faceIdTimeToLive=86400", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Ocp-Apim-Subscription-Key': '449e3437fdf34999bc9d6c2ecccc8c2b'
+        },
+        body: JSON.stringify({ url: data })
+      })
+
+        .then((resposta) => {
+          if (resposta.status === 200) {
+            console.log(resposta)
+          }
+        })
 
       temUma = true
 
